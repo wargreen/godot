@@ -131,7 +131,6 @@ void ScriptTextEditor::_load_theme_settings() {
 	Color safe_line_number_color = EDITOR_GET("text_editor/highlighting/safe_line_number_color");
 	Color caret_color = EDITOR_GET("text_editor/highlighting/caret_color");
 	Color caret_background_color = EDITOR_GET("text_editor/highlighting/caret_background_color");
-	Color indent_guide_color = EDITOR_GET("text_editor/highlighting/indent_guide_color");
 	Color text_selected_color = EDITOR_GET("text_editor/highlighting/text_selected_color");
 	Color selection_color = EDITOR_GET("text_editor/highlighting/selection_color");
 	Color brace_mismatch_color = EDITOR_GET("text_editor/highlighting/brace_mismatch_color");
@@ -164,7 +163,6 @@ void ScriptTextEditor::_load_theme_settings() {
 	text_edit->add_color_override("safe_line_number_color", safe_line_number_color);
 	text_edit->add_color_override("caret_color", caret_color);
 	text_edit->add_color_override("caret_background_color", caret_background_color);
-	text_edit->add_color_override("indent_guide_color", indent_guide_color);
 	text_edit->add_color_override("font_selected_color", text_selected_color);
 	text_edit->add_color_override("selection_color", selection_color);
 	text_edit->add_color_override("brace_mismatch_color", brace_mismatch_color);
@@ -1078,7 +1076,7 @@ void ScriptTextEditor::set_syntax_highlighter(SyntaxHighlighter *p_highlighter) 
 	if (p_highlighter != NULL)
 		highlighter_menu->set_item_checked(highlighter_menu->get_item_idx_from_text(p_highlighter->get_name()), true);
 	else
-		highlighter_menu->set_item_checked(highlighter_menu->get_item_idx_from_text("Standard"), true);
+		highlighter_menu->set_item_checked(highlighter_menu->get_item_idx_from_text(TTR("Standard")), true);
 }
 
 void ScriptTextEditor::_change_syntax_highlighter(int p_idx) {
@@ -1512,7 +1510,7 @@ ScriptTextEditor::ScriptTextEditor() {
 	convert_case->add_shortcut(ED_SHORTCUT("script_text_editor/capitalize", TTR("Capitalize"), KEY_MASK_SHIFT | KEY_F6), EDIT_CAPITALIZE);
 	convert_case->connect("id_pressed", this, "_edit_option");
 
-	highlighters["Standard"] = NULL;
+	highlighters[TTR("Standard")] = NULL;
 	highlighter_menu = memnew(PopupMenu);
 	highlighter_menu->set_name("highlighter_menu");
 	edit_menu->get_popup()->add_child(highlighter_menu);
