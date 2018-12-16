@@ -5,7 +5,7 @@
 #if defined(OSX_ENABLED)
     #define __MACOSX_CORE__
 #elif defined(UNIX_ENABLED)
-    #define __LINUX_ALSA__
+    #define __UNIX_JACK__
 #elif defined(WINDOWS_ENABLED)
     #if defined(UWP_ENABLED)
         #define __RTAUDIO_DUMMY__

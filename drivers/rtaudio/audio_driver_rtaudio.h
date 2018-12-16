@@ -35,6 +35,7 @@
 
 #include "servers/audio_server.h"
 
+/* don't find <RtAudio.h> at build time */
 #include <RtAudio.h>
 
 class AudioDriverRtAudio : public AudioDriver {

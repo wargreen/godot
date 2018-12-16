@@ -63,7 +63,10 @@ def get_opts():
         EnumVariable('debug_symbols', 'Add debugging symbols to release builds', 'yes', ('yes', 'no', 'full')),
         BoolVariable('separate_debug_symbols', 'Create a separate file containing debugging symbols', False),
         BoolVariable('touch', 'Enable touch events', True),
+
         BoolVariable('execinfo', 'Use libexecinfo on systems where glibc is not available', False),
+
+        BoolVariable('rtaudio', 'Enable RtAudio driver with Jack backend', False),
     ]
 
 
@@ -276,6 +279,11 @@ def configure(env):
             env.ParseConfig('pkg-config --cflags --libs libpulse')
         else:
             print("PulseAudio development libraries not found, disabling driver")
+
+    if env['rtaudio']:
+        print("Enabling RtAudio")
+        env.Append(CCFLAGS=['-DRTAUDIO_ENABLED'])
+
 
     if (platform.system() == "Linux"):
         env.Append(CPPFLAGS=["-DJOYDEV_ENABLED"])

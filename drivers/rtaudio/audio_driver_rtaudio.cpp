@@ -40,7 +40,7 @@ const char *AudioDriverRtAudio::get_name() const {
 #ifdef OSX_ENABLED
 	return "RtAudio-OSX";
 #elif defined(UNIX_ENABLED)
-	return "RtAudio-ALSA";
+	return "RtAudio-Jack";
 #elif defined(WINDOWS_ENABLED)
 	return "RtAudio-DirectSound";
 #else
